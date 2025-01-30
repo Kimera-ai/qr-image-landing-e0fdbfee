@@ -20,14 +20,14 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer className="w-full max-w-sm mx-auto mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-white/90">{title}</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">{title}</h2>
       {(isLoading || (isError && refetchInterval)) ? (
         <div className="text-center">
           <LoadingSpinner />
-          <p className="text-white/70 mt-2">Processing your request...</p>
+          <p className="text-black mt-2">Processing your request...</p>
         </div>
       ) : isError ? (
-        <div className="text-red-400">Failed to load {title.toLowerCase()}</div>
+        <div className="text-black">Failed to load {title.toLowerCase()}</div>
       ) : (
         <img
           src={data}
