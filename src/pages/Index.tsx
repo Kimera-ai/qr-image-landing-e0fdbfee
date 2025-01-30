@@ -70,7 +70,7 @@ const Index = () => {
       <div className="max-w-4xl w-full space-y-8">
         <div className="flex flex-col items-center space-y-4">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="900.000000pt" height="261.000000pt" viewBox="0 0 900.000000 261.000000"
+            width="300.000000pt" height="87.000000pt" viewBox="0 0 900.000000 261.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
               Created by potrace 1.10, written by Peter Selinger 2001-2011
