@@ -10,9 +10,10 @@ const fetchQRCode = async () => {
   return response.url;
 };
 
-// Updated function to use Kimera AI API with correct pipeline ID
+// Updated function to use Kimera AI API with better logging
 const fetchImage = async () => {
   try {
+    console.log('Fetching API key from Supabase...');
     const { data: secretData, error: secretError } = await supabase
       .from('secrets')
       .select('value')
@@ -26,11 +27,13 @@ const fetchImage = async () => {
     
     if (!secretData) {
       console.error('No API key found in database');
-      throw new Error('KIMERA_API_KEY not found in database. Please make sure it is properly set.');
+      throw new Error('KIMERA_API_KEY not found in database');
     }
 
+    console.log('API key retrieved successfully');
     const pipelineId = "v2_1xgbbA4_BH";
     
+    console.log('Making request to Kimera API...');
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
       headers: {
         'x-api-key': secretData.value,
@@ -39,16 +42,15 @@ const fetchImage = async () => {
 
     if (!response.ok) {
       console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       const errorText = await response.text();
       console.log('Error response:', errorText);
-      throw new Error('Failed to fetch image from Kimera AI');
+      throw new Error(`Failed to fetch image from Kimera AI: ${response.status}`);
     }
 
     const responseData = await response.json();
     console.log('Kimera API response:', responseData);
     
-    // Check if the response contains an image URL
     if (!responseData.output?.image_url) {
       console.log('Full response data:', responseData);
       throw new Error('No image URL in response');
@@ -56,7 +58,7 @@ const fetchImage = async () => {
 
     return responseData.output.image_url;
   } catch (error) {
-    console.error('Error fetching image:', error);
+    console.error('Error in fetchImage:', error);
     throw error;
   }
 };
