@@ -6,12 +6,14 @@ interface DisplaySectionProps {
   title: string;
   queryKey: string;
   fetchFn: () => Promise<string>;
+  refetchInterval?: number;
 }
 
-const DisplaySection = ({ title, queryKey, fetchFn }: DisplaySectionProps) => {
+const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySectionProps) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [queryKey],
     queryFn: fetchFn,
+    refetchInterval: refetchInterval,
   });
 
   return (

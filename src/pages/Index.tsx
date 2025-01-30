@@ -37,6 +37,12 @@ const fetchImage = async (requestId: string | null) => {
     const responseData = await response.json();
     console.log('Kimera API response:', responseData);
     
+    // Check if the status is not "Completed"
+    if (responseData.status !== "Completed") {
+      console.log('Status not completed, throwing error to trigger retry');
+      throw new Error('Status not completed');
+    }
+
     if (!responseData.result) {
       console.log('Full response data:', responseData);
       throw new Error('No result URL in response');
@@ -69,6 +75,7 @@ const Index = () => {
             title="Random Image"
             queryKey="random-image"
             fetchFn={() => fetchImage(requestId)}
+            refetchInterval={2000} // Poll every 2 seconds until success
           />
           <DisplaySection
             title="QR Code"
