@@ -22,7 +22,7 @@ const fetchImage = async () => {
     if (error) throw error;
     if (!data) throw new Error('API key not found in database');
 
-    const pipelineId = "v2_dF4XFBDoIH";
+    const pipelineId = "v2_1xgbbA4_BH";
     
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
       headers: {
