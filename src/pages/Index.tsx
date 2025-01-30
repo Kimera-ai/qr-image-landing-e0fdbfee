@@ -3,6 +3,7 @@ import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 const fetchQRCode = async (requestId: string | null) => {
   if (!requestId) {
@@ -105,8 +106,12 @@ const Index = () => {
           />
           <div className="flex justify-center mt-4">
             <a href="https://dutyfree.netlify.app/" className="w-full max-w-xs">
-              <Button className="w-full" variant="default" size="lg">
-                חזרה למסך הבית
+              <Button 
+                className="w-full bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-2 text-lg py-6" 
+                size="lg"
+              >
+                <ArrowLeft className="h-5 w-5" />
+                לחצו כאן כדי להתחיל
               </Button>
             </a>
           </div>
