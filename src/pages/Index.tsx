@@ -16,9 +16,12 @@ const fetchImage = async () => {
     
     console.log('Making request to Kimera API...');
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
+      method: 'POST',  // Added POST method
       headers: {
         'x-api-key': apiKey,
+        'Content-Type': 'application/json',  // Added Content-Type header
       },
+      body: JSON.stringify({})  // Added empty body as required by POST requests
     });
 
     if (!response.ok) {
