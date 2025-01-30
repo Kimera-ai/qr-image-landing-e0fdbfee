@@ -13,19 +13,20 @@ const fetchQRCode = async () => {
 // Updated function to use Kimera AI API with correct pipeline ID
 const fetchImage = async () => {
   try {
-    const { data: { secret }, error } = await supabase
+    const { data, error } = await supabase
       .from('secrets')
       .select('value')
       .eq('name', 'KIMERA_API_KEY')
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('API key not found in database');
 
     const pipelineId = "v2_dF4XFBDoIH";
     
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
       headers: {
-        'x-api-key': secret.value,
+        'x-api-key': data.value,
       },
     });
 
