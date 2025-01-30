@@ -7,8 +7,9 @@ const fetchQRCode = async (requestId: string | null) => {
   if (!requestId) {
     throw new Error('No request ID provided in URL');
   }
-  const url = `https://hjnujgq4z4.execute-api.us-east-1.amazonaws.com/public/request/qr?request_id=${requestId}`;
-  return url;
+  const response = await fetch(`https://hjnujgq4z4.execute-api.us-east-1.amazonaws.com/public/request/qr?request_id=${requestId}`);
+  const data = await response.json();
+  return data.qr_code;
 };
 
 const fetchImage = async (requestId: string | null) => {
