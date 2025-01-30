@@ -20,7 +20,9 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer className="w-full max-w-sm mx-auto mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-black text-right">התמונה שלך</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black text-right">
+        {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "התמונה שלך"}
+      </h2>
       {(isLoading || (isError && refetchInterval)) ? (
         <div className="text-center">
           <LoadingSpinner />
