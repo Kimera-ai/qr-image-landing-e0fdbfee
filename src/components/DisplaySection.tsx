@@ -20,7 +20,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer className="w-full max-w-sm mx-auto mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-black">{title}</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">התמונה שלך</h2>
       {(isLoading || (isError && refetchInterval)) ? (
         <div className="text-center">
           <LoadingSpinner />
