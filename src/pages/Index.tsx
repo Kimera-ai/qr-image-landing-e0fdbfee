@@ -71,7 +71,7 @@ const Index = () => {
         <h1 className="text-4xl font-bold text-center text-white/90 mb-12">
           Welcome
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex flex-col space-y-8">
           <DisplaySection
             title="Random Image"
             queryKey="random-image"
