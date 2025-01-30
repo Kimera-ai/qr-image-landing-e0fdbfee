@@ -26,7 +26,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
       {(isLoading || (isError && refetchInterval)) ? (
         <div className="text-center">
           <LoadingSpinner />
-          <p className="text-black mt-2">בהכנה</p>
+          <p className="text-black mt-2 text-lg">...על האש, כבר מגיע</p>
         </div>
       ) : isError ? (
         <div className="text-black">Failed to load {title.toLowerCase()}</div>
