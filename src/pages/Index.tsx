@@ -1,17 +1,44 @@
 import { useState, useEffect } from "react";
 import DisplaySection from "@/components/DisplaySection";
+import { supabase } from "@/integrations/supabase/client";
 
-// Mock API calls (replace with your actual API endpoints)
-const fetchImage = async () => {
-  const response = await fetch("https://picsum.photos/400/300");
-  return response.url;
-};
-
+// Mock API call for QR code (keep this as is)
 const fetchQRCode = async () => {
   const response = await fetch(
     "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lovable.dev"
   );
   return response.url;
+};
+
+// Updated function to use Kimera AI API
+const fetchImage = async () => {
+  try {
+    const { data: { secret }, error } = await supabase
+      .from('secrets')
+      .select('value')
+      .eq('name', 'KIMERA_API_KEY')
+      .single();
+    
+    if (error) throw error;
+
+    // For now, we're using a placeholder ID - you'll need to replace this with the actual pipeline ID
+    const pipelineId = "YOUR_PIPELINE_ID"; 
+    
+    const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
+      headers: {
+        'x-api-key': secret.value,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch image from Kimera AI');
+    }
+
+    return response.url;
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    throw error;
+  }
 };
 
 const Index = () => {
