@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import DisplaySection from "@/components/DisplaySection";
-import { supabase } from "@/integrations/supabase/client";
 
 // Mock API call for QR code (keep this as is)
 const fetchQRCode = async () => {
@@ -10,33 +9,15 @@ const fetchQRCode = async () => {
   return response.url;
 };
 
-// Updated function to use Kimera AI API with better logging
 const fetchImage = async () => {
   try {
-    console.log('Fetching API key from Supabase...');
-    const { data: secretData, error: secretError } = await supabase
-      .from('secrets')
-      .select('value')
-      .eq('name', 'KIMERA_API_KEY')
-      .maybeSingle();
-    
-    if (secretError) {
-      console.error('Error fetching API key:', secretError);
-      throw new Error(`Failed to fetch API key: ${secretError.message}`);
-    }
-    
-    if (!secretData) {
-      console.error('No API key found in database');
-      throw new Error('KIMERA_API_KEY not found in database');
-    }
-
-    console.log('API key retrieved successfully');
+    const apiKey = "1097c6ae3c8dbad09c6f845af0bedb60e5408ddc33e7777d532587d15d2b5fa5";
     const pipelineId = "v2_1xgbbA4_BH";
     
     console.log('Making request to Kimera API...');
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
       headers: {
-        'x-api-key': secretData.value,
+        'x-api-key': apiKey,
       },
     });
 
