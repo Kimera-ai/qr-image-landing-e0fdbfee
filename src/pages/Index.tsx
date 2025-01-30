@@ -2,6 +2,7 @@ import { useState } from "react";
 import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const fetchQRCode = async (requestId: string | null) => {
   if (!requestId) {
@@ -102,6 +103,13 @@ const Index = () => {
             queryKey="qr-code"
             fetchFn={() => fetchQRCode(requestId)}
           />
+          <div className="flex justify-center mt-4">
+            <a href="https://dutyfree.netlify.app/" className="w-full max-w-xs">
+              <Button className="w-full" variant="default" size="lg">
+                חזרה למסך הבית
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
