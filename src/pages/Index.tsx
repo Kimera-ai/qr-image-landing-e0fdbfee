@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
@@ -10,11 +10,9 @@ const fetchQRCode = async () => {
   return response.url;
 };
 
-const fetchImage = async () => {
+const fetchImage = async (requestId: string | null) => {
   try {
     const apiKey = "3ecd71abae01f7c37625ca53c1d4e41387c3a1c438aa6608cc0dba7d34767f45";
-    const [searchParams] = useSearchParams();
-    const requestId = searchParams.get('requestid'); // Changed from 'id' to 'requestid'
     
     if (!requestId) {
       throw new Error('No request ID provided in URL');
@@ -33,7 +31,7 @@ const fetchImage = async () => {
       console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       const errorText = await response.text();
       console.log('Error response:', errorText);
-      throw new Error(`Failed to fetch image from Kimera AI: ${response.status}`);
+      throw new Error(`Failed to fetch image from Kimera API: ${response.status}`);
     }
 
     const responseData = await response.json();
@@ -52,6 +50,9 @@ const fetchImage = async () => {
 };
 
 const Index = () => {
+  const [searchParams] = useSearchParams();
+  const requestId = searchParams.get('requestid');
+
   return (
     <div
       className="min-h-screen w-full bg-cover bg-center bg-no-repeat p-6 flex flex-col items-center justify-center"
@@ -67,7 +68,7 @@ const Index = () => {
           <DisplaySection
             title="Random Image"
             queryKey="random-image"
-            fetchFn={fetchImage}
+            fetchFn={() => fetchImage(requestId)}
           />
           <DisplaySection
             title="QR Code"
