@@ -3,11 +3,12 @@ import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
 
-const fetchQRCode = async () => {
-  const response = await fetch(
-    "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lovable.dev"
-  );
-  return response.url;
+const fetchQRCode = async (requestId: string | null) => {
+  if (!requestId) {
+    throw new Error('No request ID provided in URL');
+  }
+  const url = `https://hjnujgq4z4.execute-api.us-east-1.amazonaws.com/public/request/qr?request_id=${requestId}`;
+  return url;
 };
 
 const fetchImage = async (requestId: string | null) => {
@@ -80,7 +81,7 @@ const Index = () => {
           <DisplaySection
             title="QR Code"
             queryKey="qr-code"
-            fetchFn={fetchQRCode}
+            fetchFn={() => fetchQRCode(requestId)}
           />
         </div>
       </div>
