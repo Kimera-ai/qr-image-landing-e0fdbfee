@@ -13,9 +13,8 @@ const fetchQRCode = async () => {
 const fetchImage = async () => {
   try {
     const apiKey = "3ecd71abae01f7c37625ca53c1d4e41387c3a1c438aa6608cc0dba7d34767f45";
-    const pipelineId = "v2_1xgbbA4_BH";
     const [searchParams] = useSearchParams();
-    const requestId = searchParams.get('id');
+    const requestId = searchParams.get('requestid'); // Changed from 'id' to 'requestid'
     
     if (!requestId) {
       throw new Error('No request ID provided in URL');
