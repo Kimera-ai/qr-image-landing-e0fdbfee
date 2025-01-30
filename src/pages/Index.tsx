@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DisplaySection from "@/components/DisplaySection";
+import { supabase } from "@/integrations/supabase/client";
 
 // Mock API call for QR code (keep this as is)
 const fetchQRCode = async () => {
@@ -11,7 +12,15 @@ const fetchQRCode = async () => {
 
 const fetchImage = async () => {
   try {
-    const apiKey = "1097c6ae3c8dbad09c6f845af0bedb60e5408ddc33e7777d532587d15d2b5fa5";
+    const { data: secrets, error: secretError } = await supabase
+      .from('secrets')
+      .select('value')
+      .eq('name', 'KIMERA_API_KEY')
+      .single();
+
+    if (secretError) throw new Error('Failed to fetch API key');
+    
+    const apiKey = secrets.value;
     const pipelineId = "v2_1xgbbA4_BH";
     
     console.log('Making request to Kimera API...');
