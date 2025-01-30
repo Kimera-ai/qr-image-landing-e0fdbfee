@@ -31,13 +31,19 @@ const fetchImage = async () => {
     });
 
     if (!response.ok) {
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      const errorText = await response.text();
+      console.log('Error response:', errorText);
       throw new Error('Failed to fetch image from Kimera AI');
     }
 
     const responseData = await response.json();
+    console.log('Kimera API response:', responseData);
     
     // Check if the response contains an image URL
     if (!responseData.output?.image_url) {
+      console.log('Full response data:', responseData);
       throw new Error('No image URL in response');
     }
 
