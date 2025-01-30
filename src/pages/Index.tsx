@@ -19,7 +19,7 @@ const fetchImage = async (requestId: string | null) => {
     }
     
     console.log('Making request to Kimera API...');
-    const response = await fetch(`https://api.kimera.ai/v1/pipeline/${requestId}/result`, {
+    const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${requestId}`, {
       method: 'GET',
       headers: {
         'x-api-key': apiKey,
