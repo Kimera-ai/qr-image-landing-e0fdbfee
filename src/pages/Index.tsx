@@ -10,7 +10,7 @@ const fetchQRCode = async () => {
   return response.url;
 };
 
-// Updated function to use Kimera AI API
+// Updated function to use Kimera AI API with correct pipeline ID
 const fetchImage = async () => {
   try {
     const { data: { secret }, error } = await supabase
@@ -21,8 +21,7 @@ const fetchImage = async () => {
     
     if (error) throw error;
 
-    // For now, we're using a placeholder ID - you'll need to replace this with the actual pipeline ID
-    const pipelineId = "YOUR_PIPELINE_ID"; 
+    const pipelineId = "v2_dF4XFBDoIH";
     
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
       headers: {
