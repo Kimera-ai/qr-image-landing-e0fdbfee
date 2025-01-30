@@ -68,8 +68,8 @@ const Index = () => {
       }}
     >
       <div className="max-w-4xl w-full space-y-8">
-        <h1 className="text-4xl font-bold text-center text-white/90 mb-12">
-          Welcome
+        <h1 className="text-4xl font-bold text-center text-black mb-12">
+          PERFECT HAIR CARE
         </h1>
         <div className="flex flex-col space-y-8">
           <DisplaySection
