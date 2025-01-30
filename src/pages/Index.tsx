@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
+import { useSearchParams } from "react-router-dom";
 
-// Mock API call for QR code (keep this as is)
 const fetchQRCode = async () => {
   const response = await fetch(
     "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lovable.dev"
@@ -14,9 +14,15 @@ const fetchImage = async () => {
   try {
     const apiKey = "3ecd71abae01f7c37625ca53c1d4e41387c3a1c438aa6608cc0dba7d34767f45";
     const pipelineId = "v2_1xgbbA4_BH";
+    const [searchParams] = useSearchParams();
+    const requestId = searchParams.get('id');
+    
+    if (!requestId) {
+      throw new Error('No request ID provided in URL');
+    }
     
     console.log('Making request to Kimera API...');
-    const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
+    const response = await fetch(`https://api.kimera.ai/v1/pipeline/${requestId}/result`, {
       method: 'GET',
       headers: {
         'x-api-key': apiKey,
