@@ -12,15 +12,7 @@ const fetchQRCode = async () => {
 
 const fetchImage = async () => {
   try {
-    const { data: secrets, error: secretError } = await supabase
-      .from('secrets')
-      .select('value')
-      .eq('name', 'KIMERA_API_KEY')
-      .single();
-
-    if (secretError) throw new Error('Failed to fetch API key');
-    
-    const apiKey = secrets.value;
+    const apiKey = "3ecd71abae01f7c37625ca53c1d4e41387c3a1c438aa6608cc0dba7d34767f45";
     const pipelineId = "v2_1xgbbA4_BH";
     
     console.log('Making request to Kimera API...');
