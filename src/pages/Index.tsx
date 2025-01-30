@@ -12,16 +12,14 @@ const fetchQRCode = async () => {
 const fetchImage = async () => {
   try {
     const apiKey = "1097c6ae3c8dbad09c6f845af0bedb60e5408ddc33e7777d532587d15d2b5fa5";
-    const pipelineId = "1xgbbA4_BH"; // Removed 'v2_' prefix
+    const pipelineId = "v2_1xgbbA4_BH";
     
     console.log('Making request to Kimera API...');
     const response = await fetch(`https://api.kimera.ai/v1/pipeline/run/${pipelineId}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'x-api-key': apiKey,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({})
+      }
     });
 
     if (!response.ok) {
