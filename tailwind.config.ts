@@ -19,9 +19,12 @@ export default {
     },
     extend: {
       colors: {
+        border: "hsl(var(--border))",
         mint: "#E0F4F4",
         glass: "rgba(255, 255, 255, 0.1)",
         "glass-border": "rgba(255, 255, 255, 0.2)",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
       },
       animation: {
         "spin-slow": "spin 3s linear infinite",
