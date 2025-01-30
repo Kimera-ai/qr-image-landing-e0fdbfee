@@ -34,12 +34,12 @@ const fetchImage = async () => {
     const responseData = await response.json();
     console.log('Kimera API response:', responseData);
     
-    if (!responseData.output?.image_url) {
+    if (!responseData.result) {
       console.log('Full response data:', responseData);
-      throw new Error('No image URL in response');
+      throw new Error('No result URL in response');
     }
 
-    return responseData.output.image_url;
+    return responseData.result;
   } catch (error) {
     console.error('Error in fetchImage:', error);
     throw error;
