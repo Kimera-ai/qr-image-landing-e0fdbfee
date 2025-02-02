@@ -46,14 +46,11 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
     <GlassContainer 
       className={`mx-auto ${title === "QR Code" ? "w-48 md:w-64" : "w-full max-w-3xl"} ${className || ''}`}
     >
-      <h2 className={`${title === "QR Code" ? "text-base md:text-lg" : "text-2xl md:text-4xl"} font-semibold mb-4 text-black text-center`}>
-        {title === "QR Code" ? (
-          <>
-            סרקו אותי<br />
-            לקבל את התמונה לטלפון
-          </>
-        ) : "הבחירה שלך"}
-      </h2>
+      {title !== "QR Code" && (
+        <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-black text-center">
+          הבחירה שלך
+        </h2>
+      )}
       <div className="relative min-h-[300px] md:min-h-[400px]">
         {showLoading && (
           <div className="absolute inset-0 z-10">
