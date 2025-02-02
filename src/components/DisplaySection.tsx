@@ -9,6 +9,9 @@ interface DisplaySectionProps {
   refetchInterval?: number;
 }
 
+// Define a type for the possible response data
+type ResponseData = string | { status: string };
+
 const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySectionProps) => {
   const { data, isLoading, error, isError, isFetching } = useQuery({
     queryKey: [queryKey],
@@ -29,6 +32,15 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
     retryDelay: 2000,
   });
 
+  // Helper function to safely get the status
+  const getStatus = (data: ResponseData | undefined): string => {
+    if (!data) return "Created";
+    if (typeof data === "object" && "status" in data) {
+      return data.status;
+    }
+    return "Created";
+  };
+
   return (
     <GlassContainer className={`mx-auto mb-6 ${title === "QR Code" ? "w-64" : "w-full max-w-2xl"}`}>
       <h2 className="text-xl font-semibold mb-4 text-black text-center">
@@ -36,14 +48,14 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
       </h2>
       {(isLoading || (isError && refetchInterval) || isFetching) ? (
         <div className="text-center">
-          <LoadingSpinner status={data?.status || "Created"} />
+          <LoadingSpinner status={getStatus(data)} />
           <p className="text-black mt-2 text-lg">...על האש, כבר מגיע</p>
         </div>
       ) : isError ? (
         <div className="text-black">Failed to load {title.toLowerCase()}</div>
       ) : (
         <img
-          src={data}
+          src={data as string}
           alt={title}
           className="w-full h-auto rounded-lg shadow-md"
         />
