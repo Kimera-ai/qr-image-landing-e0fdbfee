@@ -56,7 +56,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
           <div className="absolute inset-0 z-10">
             <div className="text-center">
               <LoadingSpinner status={getStatus(data)} />
-              <p className="text-black mt-1 text-sm md:text-base">התמונה בדרך אליכם</p>
+              <p className="text-black mt-2 text-xl md:text-2xl lg:text-3xl">התמונה בדרך אליכם</p>
             </div>
           </div>
         )}
