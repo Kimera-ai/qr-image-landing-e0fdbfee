@@ -40,15 +40,15 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer 
-      className={`mx-auto ${title === "QR Code" ? "w-48 md:w-64" : "w-full max-w-md"}`}
+      className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-sm"}`}
     >
-      <h2 className="text-lg md:text-xl font-semibold mb-3 text-black text-center">
+      <h2 className="text-base md:text-lg font-semibold mb-2 text-black text-center">
         {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
       {(isLoading || (isError && refetchInterval) || isFetching) ? (
         <div className="text-center">
           <LoadingSpinner status={getStatus(data)} />
-          <p className="text-black mt-2 text-base md:text-lg">...על האש, כבר מגיע</p>
+          <p className="text-black mt-1 text-sm md:text-base">...על האש, כבר מגיע</p>
         </div>
       ) : isError ? (
         <div className="text-black">Failed to load {title.toLowerCase()}</div>
