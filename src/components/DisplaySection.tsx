@@ -47,7 +47,11 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className, 
     <GlassContainer 
       className={`mx-auto ${title === "QR Code" ? "w-fit" : "w-full max-w-3xl"} ${className || ''}`}
     >
-      {title !== "QR Code" && (
+      {title === "QR Code" ? (
+        <h2 className="text-lg md:text-xl font-medium mb-2 text-black text-center">
+          סרקו לקבלת התמונה
+        </h2>
+      ) : (
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 text-black text-center">
           הלוק שלך
         </h2>
