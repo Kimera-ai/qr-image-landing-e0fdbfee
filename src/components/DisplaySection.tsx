@@ -46,7 +46,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
       className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-3xl"}`}
     >
       <h2 className={`${title === "QR Code" ? "text-base md:text-lg" : "text-2xl md:text-4xl"} font-semibold mb-4 text-black text-center`}>
-        {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
+        {title === "QR Code" ? "סרקו אותי\nלקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
       <div className="relative min-h-[300px] md:min-h-[400px]">
         {showLoading && (
