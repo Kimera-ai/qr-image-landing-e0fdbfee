@@ -18,7 +18,7 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
       case "Rendering":
         return { min: 50, max: 75 };
       case "Completed":
-        return { min: 75, max: 100 };
+        return { min: 100, max: 100 }; // Set both min and max to 100 when completed
       default:
         return { min: 0, max: 25 };
     }
@@ -26,6 +26,13 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
 
   useEffect(() => {
     const range = getProgressRange(status);
+    
+    // If status is Completed, immediately set to 100% and don't animate
+    if (status === "Completed") {
+      setProgress(100);
+      return;
+    }
+
     const duration = 60000; // 1 minute in milliseconds
     const interval = 100; // Update every 100ms for smooth animation
     const steps = duration / interval;
