@@ -48,8 +48,16 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
 
   return (
     <div className="w-full px-8">
-      <Progress value={progress} className="h-3 bg-mint/20" />
-      <p className="text-center text-sm text-black mt-2">{Math.round(progress)}%</p>
+      <Progress 
+        value={progress} 
+        className="h-4 bg-mint/20 rounded-full overflow-hidden"
+      />
+      <div className="flex items-center justify-between mt-3">
+        <p className="text-sm text-gray-600">{status}</p>
+        <p className="text-sm font-semibold bg-mint/30 px-3 py-1 rounded-full text-black">
+          {Math.round(progress)}%
+        </p>
+      </div>
     </div>
   );
 };
