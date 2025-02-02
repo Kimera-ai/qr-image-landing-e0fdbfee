@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
 const ThankYou = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.href = "https://dutyfree.netlify.app";
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       className="h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col items-center p-2 md:p-4 overflow-hidden"
