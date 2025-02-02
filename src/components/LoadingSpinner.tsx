@@ -18,10 +18,10 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
     // Reset progress when starting
     setProgress(0);
 
-    const duration = 60000; // 1 minute in milliseconds
+    const duration = 80000; // 1 minute and 20 seconds in milliseconds
     const interval = 100; // Update every 100ms for smooth animation
     const steps = duration / interval;
-    const increment = 100 / steps; // Increment to reach 100% in 1 minute
+    const increment = 100 / steps; // Increment to reach 100% in 1 minute and 20 seconds
 
     const timer = setInterval(() => {
       setProgress(prev => {
