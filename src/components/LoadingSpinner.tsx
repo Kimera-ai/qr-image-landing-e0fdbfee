@@ -57,7 +57,7 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
     <div className="w-full px-8">
       <Progress 
         value={progress} 
-        className="h-4 bg-mint/20 rounded-full overflow-hidden"
+        className="h-4 bg-white/20 rounded-full overflow-hidden border border-white/30"
       />
     </div>
   );
