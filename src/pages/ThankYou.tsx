@@ -17,7 +17,7 @@ const ThankYou = () => {
       }}
     >
       <div className="w-full max-w-4xl flex flex-col h-full">
-        <div className="flex-shrink-0 mb-2 md:mb-4">
+        <div className="flex-shrink-0 mb-2 md:mb-4 animate-fade-in">
           <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2835 777" className="w-[200px] h-[55px] md:w-[280px] md:h-[77px] mx-auto">
             <title>LOGO DUTY FREE _RED background</title>
             <defs>
@@ -37,9 +37,14 @@ const ThankYou = () => {
         </div>
         
         <div className="flex-grow flex flex-col items-center justify-center">
-          <h1 className="text-2xl md:text-4xl font-bold text-center text-black mb-4">
-            !תודה שבחרת בדיוטי פרי, שתיהיה לך טיסה נעימה
-          </h1>
+          <div className="transform transition-all duration-700 animate-scale-in">
+            <h1 className="text-2xl md:text-4xl font-bold text-center text-black mb-4 animate-bounce">
+              !תודה שבחרת בדיוטי פרי
+            </h1>
+            <p className="text-xl md:text-3xl text-center text-black animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+              שתיהיה לך טיסה נעימה
+            </p>
+          </div>
         </div>
       </div>
     </div>
