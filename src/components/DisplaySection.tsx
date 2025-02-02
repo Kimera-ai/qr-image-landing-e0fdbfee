@@ -47,7 +47,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
       className={`mx-auto ${title === "QR Code" ? "w-fit" : "w-full max-w-3xl"} ${className || ''}`}
     >
       {title !== "QR Code" && (
-        <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-black text-center">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 text-black text-center">
           הבחירה שלך
         </h2>
       )}
