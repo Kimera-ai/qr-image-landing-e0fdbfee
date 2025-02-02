@@ -111,7 +111,7 @@ const Index = () => {
                 size="lg"
               >
                 <ArrowLeft className="h-5 w-5" />
-                חזור למסך הבית
+                סיום
               </Button>
             </a>
           </div>
