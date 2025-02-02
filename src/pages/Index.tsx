@@ -110,10 +110,10 @@ const Index = () => {
         <div className="flex-shrink-0 mt-2 md:mt-4">
           <a href="https://dutyfree.netlify.app/" className="block w-full max-w-xs mx-auto">
             <Button 
-              className="w-full bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-2 text-base md:text-lg py-2 md:py-4" 
+              className="w-full bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-2 text-lg md:text-xl py-4 md:py-6" 
               size="lg"
             >
-              <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
+              <ArrowLeft className="h-5 w-5 md:h-6 md:w-6" />
               סיום
             </Button>
           </a>
