@@ -45,20 +45,26 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
       <h2 className="text-base md:text-lg font-semibold mb-2 text-black text-center">
         {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
-      {(isLoading || (isError && refetchInterval) || isFetching) ? (
-        <div className="text-center">
-          <LoadingSpinner status={getStatus(data)} />
-          <p className="text-black mt-1 text-sm md:text-base">...על האש, כבר מגיע</p>
-        </div>
-      ) : isError ? (
-        <div className="text-black">Failed to load {title.toLowerCase()}</div>
-      ) : (
-        <img
-          src={data as string}
-          alt={title}
-          className="w-full h-auto rounded-lg shadow-md"
-        />
-      )}
+      <div className="relative min-h-[200px]">
+        {(isLoading || (isError && refetchInterval) || isFetching) && (
+          <div className="absolute inset-0 z-10 transition-opacity duration-300 ease-in-out">
+            <div className="text-center">
+              <LoadingSpinner status={getStatus(data)} />
+              <p className="text-black mt-1 text-sm md:text-base">...על האש, כבר מגיע</p>
+            </div>
+          </div>
+        )}
+        {!isLoading && !isError && data && (
+          <img
+            src={data as string}
+            alt={title}
+            className={`w-full h-auto rounded-lg shadow-md transition-opacity duration-300 ease-in-out ${(isLoading || isFetching) ? 'opacity-0' : 'opacity-100'}`}
+          />
+        )}
+        {isError && !refetchInterval && (
+          <div className="text-black">Failed to load {title.toLowerCase()}</div>
+        )}
+      </div>
     </GlassContainer>
   );
 };
