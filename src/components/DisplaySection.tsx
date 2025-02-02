@@ -44,14 +44,14 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
 
   return (
     <GlassContainer 
-      className={`mx-auto ${title === "QR Code" ? "w-48 md:w-64" : "w-full max-w-3xl"} ${className || ''}`}
+      className={`mx-auto ${title === "QR Code" ? "w-fit" : "w-full max-w-3xl"} ${className || ''}`}
     >
       {title !== "QR Code" && (
         <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-black text-center">
           הבחירה שלך
         </h2>
       )}
-      <div className="relative min-h-[300px] md:min-h-[400px]">
+      <div className={`relative ${title === "QR Code" ? "min-h-fit" : "min-h-[300px] md:min-h-[400px]"}`}>
         {showLoading && (
           <div className="absolute inset-0 z-10">
             <div className="text-center">
