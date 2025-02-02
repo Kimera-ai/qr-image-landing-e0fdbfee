@@ -112,10 +112,10 @@ const Index = () => {
         <div className="flex-shrink-0 mt-2 md:mt-4">
           <Button 
             onClick={() => navigate('/thank-you')}
-            className="w-full max-w-lg mx-auto bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-8 text-3xl md:text-4xl py-12 md:py-16" 
+            className="w-full max-w-lg mx-auto bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-4 text-3xl md:text-4xl py-8 md:py-10" 
             size="lg"
           >
-            <ArrowLeft size={400} strokeWidth={2} />
+            <ArrowLeft className="w-48 h-48 md:w-56 md:h-56" />
             סיום
           </Button>
         </div>
