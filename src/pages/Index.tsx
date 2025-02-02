@@ -3,7 +3,6 @@ import DisplaySection from "@/components/DisplaySection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 
 const fetchQRCode = async (requestId: string | null) => {
   if (!requestId) {
@@ -62,6 +61,7 @@ const Index = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const requestId = searchParams.get('requestid');
+  const [imageReady, setImageReady] = useState(false);
 
   return (
     <div
@@ -100,13 +100,16 @@ const Index = () => {
             fetchFn={() => fetchImage(requestId)}
             refetchInterval={2000}
             className="max-h-[80vh]"
+            onImageLoaded={() => setImageReady(true)}
           />
-          <DisplaySection
-            title="QR Code"
-            queryKey="qr-code"
-            fetchFn={() => fetchQRCode(requestId)}
-            className="absolute bottom-4 left-4 z-10 scale-50 transform origin-bottom-left"
-          />
+          {imageReady && (
+            <DisplaySection
+              title="QR Code"
+              queryKey="qr-code"
+              fetchFn={() => fetchQRCode(requestId)}
+              className="absolute bottom-4 left-4 z-10 scale-50 transform origin-bottom-left"
+            />
+          )}
         </div>
 
         <div className="flex-shrink-0 mt-2 md:mt-4">

@@ -8,11 +8,12 @@ interface DisplaySectionProps {
   fetchFn: () => Promise<string>;
   refetchInterval?: number;
   className?: string;
+  onImageLoaded?: () => void;
 }
 
 type ResponseData = string | { status: string };
 
-const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }: DisplaySectionProps) => {
+const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className, onImageLoaded }: DisplaySectionProps) => {
   const { data, isLoading, error, isError, isFetching } = useQuery({
     queryKey: [queryKey],
     queryFn: async () => {
@@ -65,6 +66,11 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
             src={data as string}
             alt={title}
             className="w-full h-auto rounded-lg shadow-md object-contain max-h-[60vh]"
+            onLoad={() => {
+              if (onImageLoaded && title === "Random Image") {
+                onImageLoaded();
+              }
+            }}
           />
         )}
         {isError && !refetchInterval && (
