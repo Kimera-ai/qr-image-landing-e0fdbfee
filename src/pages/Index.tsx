@@ -99,13 +99,13 @@ const Index = () => {
             queryKey="random-image"
             fetchFn={() => fetchImage(requestId)}
             refetchInterval={2000}
-            className="max-h-[70vh]"
+            className="max-h-[80vh]"
           />
           <DisplaySection
             title="QR Code"
             queryKey="qr-code"
             fetchFn={() => fetchQRCode(requestId)}
-            className="absolute bottom-4 left-4 z-10 scale-75 transform origin-bottom-left"
+            className="absolute bottom-4 left-4 z-10 scale-50 transform origin-bottom-left"
           />
         </div>
 
