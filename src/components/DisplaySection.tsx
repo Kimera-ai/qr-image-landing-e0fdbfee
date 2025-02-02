@@ -48,7 +48,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval, className }
     >
       {title !== "QR Code" && (
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 text-black text-center">
-          הבחירה שלך
+          הלוק שלך
         </h2>
       )}
       <div className={`relative ${title === "QR Code" ? "min-h-fit" : "min-h-[300px] md:min-h-[400px]"}`}>
