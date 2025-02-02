@@ -43,7 +43,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer 
-      className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-3xl"}`}
+      className={`mx-auto ${title === "QR Code" ? "w-48 md:w-64" : "w-full max-w-3xl"}`}
     >
       <h2 className={`${title === "QR Code" ? "text-base md:text-lg" : "text-2xl md:text-4xl"} font-semibold mb-4 text-black text-center`}>
         {title === "QR Code" ? (
