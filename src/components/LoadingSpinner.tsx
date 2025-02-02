@@ -59,7 +59,6 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
         value={progress} 
         className="h-4 bg-mint/20 rounded-full overflow-hidden"
       />
-      <p className="text-black mt-1 text-sm md:text-base text-center">...על האש, כבר מגיע</p>
     </div>
   );
 };
