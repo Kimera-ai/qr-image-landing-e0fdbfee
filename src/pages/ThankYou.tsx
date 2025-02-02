@@ -45,6 +45,9 @@ const ThankYou = () => {
             <p className="text-3xl md:text-5xl text-center text-black animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
               שתיהיה לך טיסה נעימה
             </p>
+            <p className="text-2xl md:text-3xl text-center text-black mt-4 animate-fade-in opacity-0" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
+              @dutyfree_il
+            </p>
           </div>
         </div>
       </div>
