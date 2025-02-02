@@ -99,13 +99,12 @@ const Index = () => {
             fetchFn={() => fetchImage(requestId)}
             refetchInterval={2000}
           />
-          <div className="absolute bottom-0 left-0 z-10">
-            <DisplaySection
-              title="QR Code"
-              queryKey="qr-code"
-              fetchFn={() => fetchQRCode(requestId)}
-            />
-          </div>
+          <DisplaySection
+            title="QR Code"
+            queryKey="qr-code"
+            fetchFn={() => fetchQRCode(requestId)}
+            className="absolute bottom-0 left-0 z-10"
+          />
         </div>
 
         <div className="flex-shrink-0 mt-2 md:mt-4">
