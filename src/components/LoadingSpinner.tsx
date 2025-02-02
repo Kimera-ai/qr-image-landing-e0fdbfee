@@ -1,23 +1,27 @@
 import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from "react";
 
-const LoadingSpinner = () => {
-  const [progress, setProgress] = useState(0);
+interface LoadingSpinnerProps {
+  status: string;
+}
 
-  useEffect(() => {
-    // Simulate progress while waiting for completion
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 90) {
-          // Cap at 90% until we get "Completed" status
-          return 90;
-        }
-        return prevProgress + 10;
-      });
-    }, 1000);
+const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
+  // Map API status to progress percentage
+  const getProgressFromStatus = (status: string) => {
+    switch (status) {
+      case "Created":
+        return 25;
+      case "Processing":
+        return 50;
+      case "Rendering":
+        return 75;
+      case "Completed":
+        return 100;
+      default:
+        return 0;
+    }
+  };
 
-    return () => clearInterval(timer);
-  }, []);
+  const progress = getProgressFromStatus(status);
 
   return (
     <div className="w-full px-8">

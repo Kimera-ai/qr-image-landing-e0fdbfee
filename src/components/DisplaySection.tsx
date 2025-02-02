@@ -10,9 +10,20 @@ interface DisplaySectionProps {
 }
 
 const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySectionProps) => {
-  const { data, isLoading, error, isError } = useQuery({
+  const { data, isLoading, error, isError, isFetching } = useQuery({
     queryKey: [queryKey],
-    queryFn: fetchFn,
+    queryFn: async () => {
+      try {
+        const result = await fetchFn();
+        return result;
+      } catch (error: any) {
+        // If the error contains status information, return it
+        if (error.status) {
+          return { status: error.status };
+        }
+        throw error;
+      }
+    },
     refetchInterval: refetchInterval,
     retry: true,
     retryDelay: 2000,
@@ -23,9 +34,9 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
       <h2 className="text-xl font-semibold mb-4 text-black text-center">
         {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
-      {(isLoading || (isError && refetchInterval)) ? (
+      {(isLoading || (isError && refetchInterval) || isFetching) ? (
         <div className="text-center">
-          <LoadingSpinner />
+          <LoadingSpinner status={data?.status || "Created"} />
           <p className="text-black mt-2 text-lg">...על האש, כבר מגיע</p>
         </div>
       ) : isError ? (
