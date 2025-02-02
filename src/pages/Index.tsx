@@ -115,7 +115,7 @@ const Index = () => {
             className="w-full max-w-lg mx-auto bg-[#ea384c] hover:bg-[#ea384c]/90 text-white rounded-full flex items-center justify-center gap-4 text-3xl md:text-4xl py-8 md:py-10" 
             size="lg"
           >
-            <ArrowLeft className="w-24 h-24 md:w-32 md:h-32" />
+            <ArrowLeft className="w-32 h-32 md:w-40 md:h-40" />
             סיום
           </Button>
         </div>
