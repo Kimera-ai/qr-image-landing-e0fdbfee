@@ -43,12 +43,12 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
 
   return (
     <GlassContainer 
-      className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-sm"}`}
+      className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-3xl"}`}
     >
-      <h2 className="text-base md:text-lg font-semibold mb-2 text-black text-center">
+      <h2 className={`${title === "QR Code" ? "text-base md:text-lg" : "text-2xl md:text-4xl"} font-semibold mb-4 text-black text-center`}>
         {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
-      <div className="relative min-h-[200px]">
+      <div className="relative min-h-[300px] md:min-h-[400px]">
         {showLoading && (
           <div className="absolute inset-0 z-10">
             <div className="text-center">
@@ -61,7 +61,7 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
           <img
             src={data as string}
             alt={title}
-            className="w-full h-auto rounded-lg shadow-md"
+            className="w-full h-auto rounded-lg shadow-md object-contain max-h-[60vh]"
           />
         )}
         {isError && !refetchInterval && (
