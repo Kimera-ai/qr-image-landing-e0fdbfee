@@ -38,6 +38,9 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
     return "Created";
   };
 
+  // Only show loading state if we don't have data yet
+  const showLoading = (isLoading || (isError && refetchInterval)) && !data;
+
   return (
     <GlassContainer 
       className={`mx-auto ${title === "QR Code" ? "w-36 md:w-48" : "w-full max-w-sm"}`}
@@ -46,19 +49,19 @@ const DisplaySection = ({ title, queryKey, fetchFn, refetchInterval }: DisplaySe
         {title === "QR Code" ? "סרקו אותי לקבל את התמונה לטלפון" : "הבחירה שלך"}
       </h2>
       <div className="relative min-h-[200px]">
-        {(isLoading || (isError && refetchInterval) || isFetching) && (
-          <div className="absolute inset-0 z-10 transition-opacity duration-300 ease-in-out">
+        {showLoading && (
+          <div className="absolute inset-0 z-10">
             <div className="text-center">
               <LoadingSpinner status={getStatus(data)} />
               <p className="text-black mt-1 text-sm md:text-base">...על האש, כבר מגיע</p>
             </div>
           </div>
         )}
-        {!isLoading && !isError && data && (
+        {data && !isError && (
           <img
             src={data as string}
             alt={title}
-            className={`w-full h-auto rounded-lg shadow-md transition-opacity duration-300 ease-in-out ${(isLoading || isFetching) ? 'opacity-0' : 'opacity-100'}`}
+            className="w-full h-auto rounded-lg shadow-md"
           />
         )}
         {isError && !refetchInterval && (
