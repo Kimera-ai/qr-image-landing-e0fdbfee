@@ -1,33 +1,44 @@
-import { cn } from "@/lib/utils";
+import { Progress } from "@/components/ui/progress";
+import { useEffect, useState } from "react";
 
 interface LoadingSpinnerProps {
-  status?: string;
+  status: string;
 }
 
 const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    // If status is Completed, immediately set to 100%
+    if (status === "Completed") {
+      setProgress(100);
+      return;
+    }
+
+    // Reset progress when starting
+    setProgress(0);
+
+    const duration = 80000; // 1 minute and 20 seconds in milliseconds
+    const interval = 100; // Update every 100ms for smooth animation
+    const steps = duration / interval;
+    const increment = 100 / steps; // Increment to reach 100% in 1 minute and 20 seconds
+
+    const timer = setInterval(() => {
+      setProgress(prev => {
+        const next = prev + increment;
+        return next >= 100 ? 100 : next;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [status]);
+
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="relative">
-        <div className="w-24 h-24 border-8 border-[#fa2c2e]/30 rounded-full"></div>
-        <div className="absolute top-0 left-0 w-24 h-24 border-8 border-[#fa2c2e] border-t-transparent rounded-full animate-spin"></div>
-      </div>
-      {status && (
-        <div className="w-full px-8">
-          <div className="w-full h-2 bg-[#fa2c2e]/30 rounded-full mt-8">
-            <div
-              className={cn(
-                "h-full bg-[#fa2c2e] rounded-full transition-all duration-300",
-                {
-                  "w-1/3": status === "Created",
-                  "w-2/3": status === "Processing",
-                  "w-full": status === "Completed",
-                }
-              )}
-            ></div>
-          </div>
-          <p className="text-black mt-2 text-center">{status}</p>
-        </div>
-      )}
+    <div className="w-full px-8">
+      <Progress 
+        value={progress} 
+        className="h-4 bg-white/20 rounded-full overflow-hidden border border-white/30"
+      />
     </div>
   );
 };
