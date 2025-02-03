@@ -9,7 +9,7 @@ const GlassContainer = ({ children, className }: GlassContainerProps) => {
   return (
     <div
       className={cn(
-        "backdrop-blur-md bg-[#fa2c2e] border border-glass-border rounded-xl p-6 shadow-lg",
+        "backdrop-blur-md bg-glass border border-glass-border rounded-xl p-6 shadow-lg",
         className
       )}
     >
