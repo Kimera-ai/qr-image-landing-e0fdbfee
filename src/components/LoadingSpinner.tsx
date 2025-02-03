@@ -38,6 +38,9 @@ const LoadingSpinner = ({ status }: LoadingSpinnerProps) => {
       <Progress 
         value={progress} 
         className="h-4 bg-white/20 rounded-full overflow-hidden border border-white/30"
+        style={{ 
+          '--progress-background': '#fa2c2e'
+        } as React.CSSProperties}
       />
     </div>
   );
