@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 
 const ThankYou = () => {
@@ -40,10 +41,10 @@ const ThankYou = () => {
         <div className="flex-grow flex flex-col items-center justify-center">
           <div className="transform transition-all duration-700 animate-scale-in">
             <h1 className="text-4xl md:text-7xl font-bold text-center text-black mb-6 animate-bounce">
-              !תודה שבחרת בדיוטי פרי
+              !תודה שביקרת בדיוטי פרי
             </h1>
             <p className="text-3xl md:text-5xl text-center text-black animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-              שתיהיה לך טיסה נעימה
+              מאחלים לך טיסה נעימה
             </p>
             <p className="text-2xl md:text-3xl text-center text-black mt-4 animate-fade-in opacity-0" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
               @dutyfree_il
