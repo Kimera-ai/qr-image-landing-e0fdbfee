@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const ThankYou = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.href = "https://dutyfree.netlify.app";
+      window.location.href = "https://booth.kimera.ai/event-set/ec9f7b54-7339-4faf-90ba-f12f54cbe3da";
     }, 5000);
 
     return () => clearTimeout(timer);
